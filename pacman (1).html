@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PACMAN</title>
+    <style>
+        #container {
+            width: 1000px;
+            height: 200px;
+            margin: 20px;
+        
+        }
+        #pac-right {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="pac-right" src="./img/pac man-1.jpeg">
+    </div>
+
+    <script>
+        var container = document.getElementById("container");
+        var pacman1 = document.getElementById("pac-right");
+        var position = 0;
+        var direction = 1;
+
+        function move() {
+            position += direction * 20;
+
+            if (position < 0 || position > container.offsetWidth-60) {
+                direction = -direction;
+            }
+
+            if (((position / 20) % 2) !== 0) {
+                if (direction === 1) {
+                    pacman1.src = "./img/pac man-3.jpeg";
+                } else {
+                    pacman1.src = "./img/pac man-4.jpeg";
+                }
+            } else {
+                if (direction === 1) {
+                    pacman1.src = "./img/pac man-1.jpeg";
+                } else {
+                    pacman1.src = "./img/pac man-2.jpeg";
+                }
+            }
+
+            pacman1.style.left = position + 'px';
+        }
+
+        setInterval(move, 100);
+    </script>
+</body>
+</html>
